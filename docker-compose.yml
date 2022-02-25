@@ -1,13 +1,14 @@
-version: '3.8'
+version: "3.8"
 
 services:
   front:
     build:
       context: ./tfjs_od
       args:
-        WORKDIR: 'app'
+        WORKDIR: "app"
     command: npm start
     ports:
-      - '3000:3000'
+      - "3000:3000"
     volumes:
-      - './tfjs_od:/app'
+      - "./tfjs_od:/app"
+      - /app/node_modules
