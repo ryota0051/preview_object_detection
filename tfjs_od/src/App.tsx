@@ -1,17 +1,12 @@
 import React, { useState } from "react"
 import { useModels } from "./hooks/useModels"
 import Header from "./components/header"
-import { ChakraProvider } from "@chakra-ui/react"
+import InputFile from "./components/inputFile"
+import { Box, ChakraProvider, VStack, Text } from "@chakra-ui/react"
 
 function App() {
   const model = useModels()
   const [imgURL, setImgURL] = useState<string>("")
-  const onFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
-    if (files && files[0]) {
-      setImgURL(URL.createObjectURL(files[0]))
-    }
-  }
   const onImageChange = (e: any) => {
     const img = e.target as HTMLImageElement
     const c = document.getElementById("canvas") as HTMLCanvasElement
@@ -52,36 +47,46 @@ function App() {
       <ChakraProvider>
         <Header title="Objedt Detection Preview" />
         {model ? (
-          <div>
-            <input type="file" onChange={onFileInput} />
-            {imgURL ? (
-              <div>
-                <img
-                  id="img"
-                  alt="upload preview"
+          <VStack spacing={10}>
+            <Box>
+              <InputFile setImgURL={setImgURL} />
+            </Box>
+            <Box>
+              {imgURL ? (
+                <div
                   style={{
-                    position: "absolute",
-                    zIndex: 1,
                     width: "448px",
                   }}
-                  src={imgURL}
-                  onLoad={onImageChange}
-                />
-                <canvas
-                  id="canvas"
-                  style={{
-                    position: "absolute",
-                    zIndex: 2,
-                    width: "448px",
-                  }}
-                />
-              </div>
-            ) : (
-              <></>
-            )}
-          </div>
+                >
+                  <img
+                    id="img"
+                    alt="upload preview"
+                    style={{
+                      position: "absolute",
+                      zIndex: 1,
+                      width: "448px",
+                    }}
+                    src={imgURL}
+                    onLoad={onImageChange}
+                  />
+                  <canvas
+                    id="canvas"
+                    style={{
+                      position: "absolute",
+                      zIndex: 2,
+                      width: "448px",
+                    }}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
+            </Box>
+          </VStack>
         ) : (
-          "model loading"
+          <Text align="center" fontSize="xl">
+            model loading
+          </Text>
         )}
       </ChakraProvider>
     </>
