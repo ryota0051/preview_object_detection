@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <ChakraProvider>
-        <Header title="Objedt Detection Preview" />
+        <Header title="Object Detection Preview" />
         {model ? (
           <VStack spacing={10}>
             <Box>
