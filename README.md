@@ -20,13 +20,9 @@ docker-compose up
 
 ## アプリケーション使用方法
 
-1. `localhost:3000`において、`model loading`というメッセージが消えた後に、以下の画面に移動するので、ファイルを選択からアップロードしたい画像を選ぶ
+`localhost:3000`において、`model loading`というメッセージが消えた後に、以下のように物体検出実施対象画像を選択する。
 
-![デフォルト画面](./screen_shots/default_screen.png)
-
-2. 画像を選択すると、下記のように BBox とクラス名が表示される。
-
-![物体検出結果](./screen_shots/detect_result.png)
+![使い方](./screen_shots/usage.gif)
 
 ## 使用技術
 
