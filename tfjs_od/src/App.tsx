@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import { useModels } from "./hooks/useModels"
+import Header from "./components/header"
+import { ChakraProvider } from "@chakra-ui/react"
 
 function App() {
   const model = useModels()
@@ -47,38 +49,41 @@ function App() {
 
   return (
     <>
-      {model ? (
-        <div>
-          <input type="file" onChange={onFileInput} />
-          {imgURL ? (
-            <div>
-              <img
-                id="img"
-                alt="upload preview"
-                style={{
-                  position: "absolute",
-                  zIndex: 1,
-                  width: "448px",
-                }}
-                src={imgURL}
-                onLoad={onImageChange}
-              />
-              <canvas
-                id="canvas"
-                style={{
-                  position: "absolute",
-                  zIndex: 2,
-                  width: "448px",
-                }}
-              />
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
-      ) : (
-        "model loading"
-      )}
+      <ChakraProvider>
+        <Header title="Objedt Detection Preview" />
+        {model ? (
+          <div>
+            <input type="file" onChange={onFileInput} />
+            {imgURL ? (
+              <div>
+                <img
+                  id="img"
+                  alt="upload preview"
+                  style={{
+                    position: "absolute",
+                    zIndex: 1,
+                    width: "448px",
+                  }}
+                  src={imgURL}
+                  onLoad={onImageChange}
+                />
+                <canvas
+                  id="canvas"
+                  style={{
+                    position: "absolute",
+                    zIndex: 2,
+                    width: "448px",
+                  }}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+        ) : (
+          "model loading"
+        )}
+      </ChakraProvider>
     </>
   )
 }
