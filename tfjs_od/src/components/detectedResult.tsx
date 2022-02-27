@@ -18,6 +18,7 @@ const DetectedResult = (props: DetectedResultProps) => {
     c.width = img.offsetWidth
     c.height = img.offsetHeight
     ctx.beginPath()
+    ctx.drawImage(img, 0, 0, img.offsetWidth, img.offsetHeight)
     ctx.font = font
     ctx.textBaseline = "top"
     model.detect(img).then((predictions) => {
